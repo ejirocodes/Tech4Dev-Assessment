@@ -23,14 +23,21 @@ export default function CharacterCard({ characters }) {
       {characters.length !== 0 && (
         <section className="character_grid">
           {characters.results.map((character, i) => (
-            <figure onClick={() => handleCharacter(i)} key={i}>
+            <figure
+              onClick={() => handleCharacter(i)}
+              key={i}
+              title={character.name}
+            >
               <img
                 className="character-img"
-                src="http://isgpp.com.ng/wp-content/uploads/bfi_thumb/isgpp_avatar_placeholder-nn13xxddqb4k2et3buosj68bh92wogalq28zpaeioo.png"
+                src="http://cliparts101.com/files/367/63BA654AECB7FD26A32D08915C923030/avatar_nick.png"
                 alt={character.name}
                 title={character.name}
               />
               <figcaption className="username">{character.name}</figcaption>
+              <div className="go-corner" href="#">
+                <div className="go-arrow">→</div>
+              </div>
             </figure>
           ))}
         </section>
