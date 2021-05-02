@@ -18,7 +18,7 @@ class User {
 }
 
 export default function UserDetails() {
-  const [user, setCharacter] = useState({});
+  const [user, setUser] = useState({});
   const history = useHistory();
 
   const { index } = useParams();
@@ -37,14 +37,13 @@ export default function UserDetails() {
           }),
         });
         let transformedData = await data.json();
-        setCharacter(transformedData);
-        console.log(!userClass.getUser().name);
+        setUser(transformedData);
       } catch (error) {
         console.log(error);
       }
     };
     getUser();
-  }, []);
+  }, [user, index]);
 
   return (
     <>

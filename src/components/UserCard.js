@@ -25,13 +25,11 @@ export default function UserCard({ users }) {
   const handleSearchInputChanges = (e) => {
     setSearchValue(e.target.value);
   };
+
   useEffect(() => {
     if (users.length !== 0) {
-      console.log({ users });
-
       setFilteredUsers(
         users.results.filter((user) => {
-          // console.log(user);
           return user.name.toLowerCase().includes(searchValue.toLowerCase());
         })
       );
@@ -43,15 +41,15 @@ export default function UserCard({ users }) {
       {users.length === 0 && <Preloader />}
       {users.length !== 0 && (
         <>
-          {console.log(filteredUsers)}
-          <input
-            value={searchValue}
-            onChange={handleSearchInputChanges}
-            type="text"
-            className="searchTerm"
-            placeholder="Search for users..."
-          />
-          {searchValue}
+          <div className="search">
+            <input
+              value={searchValue}
+              onChange={handleSearchInputChanges}
+              type="text"
+              className="searchTerm"
+              placeholder="Search for users..."
+            />
+          </div>
           <section className="character_grid">
             {filteredUsers.map((user, i) => (
               <figure onClick={() => handleUsers(i)} key={i} title={user.name}>
@@ -67,6 +65,7 @@ export default function UserCard({ users }) {
                 </div>
               </figure>
             ))}
+            {filteredUsers.length === 0 && <p>No user found</p>}
           </section>
         </>
       )}
