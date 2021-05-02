@@ -31,6 +31,7 @@ body {
   font-family: 'Nunito', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-weight: 700;
 }
 
 .character_grid {
@@ -82,7 +83,24 @@ body {
 .character_grid figure:hover:before {
   transform: scale(28);
 }
+.character_grid2.character_grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 37rem;
+  max-width: 100%;
+  margin: auto;
+  padding: 0;
+  box-sizing: content-box;
+}
+.character_grid2 figure:hover:before {
+  transform: scale(39) !important;
+}
 
+.character_grid2 figure:hover {
+  color: #ffffff !important;
+}
 .character_grid figure:hover .username {
   transition: all 0.3s ease-out;
   color: #ffffff;
@@ -93,12 +111,12 @@ body {
   height: 8rem;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 0.5rem;
 }
 .username {
   font-weight: 800;
   font-size: 1.4rem;
   color: var(--color-pri);
+  margin: 0.5rem;
 }
 
 .go-corner {

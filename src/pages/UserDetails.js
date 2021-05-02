@@ -49,18 +49,34 @@ export default function UserDetails() {
   return (
     <>
       {!userClass.getUser().name && <Preloader />}
-      {user && (
-        <div>
-          <div className="back" onClick={() => history.goBack()}>
+      {userClass.getUser().name && (
+        <section style={{ padding: '2rem' }}>
+          <span className="back" onClick={() => history.goBack()}>
             Back
+          </span>
+          <div className="character_grid character_grid2">
+            <figure title={userClass.getUser().name}>
+              <img
+                className="character-img"
+                src="http://cliparts101.com/files/367/63BA654AECB7FD26A32D08915C923030/avatar_nick.png"
+                alt={userClass.getUser().name}
+                title={userClass.getUser().name}
+              />
+              <figcaption className="username">
+                {' '}
+                {userClass.getUser().name}
+              </figcaption>
+              {/* Hide gender if it's not available */}
+              {userClass.getUser().gender !== 'n/a' && (
+                <p>Gender: {userClass.getUser().gender}</p>
+              )}
+              <p>Height: {userClass.getUser().height}</p>
+              <div className="go-corner" href="#">
+                <div className="go-arrow">→</div>
+              </div>
+            </figure>
           </div>
-          <h1> {userClass.getUser().name}</h1>
-          {/* Hide gender if it's not available */}
-          {userClass.getUser().gender !== 'n/a' && (
-            <p>{userClass.getUser().gender}</p>
-          )}
-          <p>{userClass.getUser().height}</p>
-        </div>
+        </section>
       )}
     </>
   );
