@@ -20,7 +20,8 @@ export default function CharacterCard({ characters }) {
 
   return (
     <>
-      {!characters.length && <Preloader />}
+      {console.log(characters)}
+      {characters.length === 0 && <Preloader />}
       {characters.length !== 0 && (
         <section className="character_grid">
           {characters.results.map((character, i) => (
