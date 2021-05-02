@@ -33,12 +33,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
 }
-
+body.light-mode {
+  background-color: #fff;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+body.dark-mode {
+  background-color: #102a43;
+  color: #999;
+}
 .character_grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 1.8rem;
-  background: #ffff;
   padding: 1.4rem;
   justify-content: space-evenly;
   justify-items: center;
@@ -142,6 +149,10 @@ body {
 .back {
   cursor: pointer;
   user-select: none;
+}
+.theme-btn {
+  float: right;
+  margin: 1.4rem 1.4rem 0;
 }
 .search {
   width: 100%;

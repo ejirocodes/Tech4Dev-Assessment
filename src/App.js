@@ -4,14 +4,17 @@ import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
+import DarkModeToggle from 'react-dark-mode-toggle';
 
 import UserDetails from './pages/UserDetails';
 import ErrorToast from './components/ErrorToast';
+import useDarkMode from 'use-dark-mode';
 
 const API_ENDPOINT = `https://swapi.dev/api/people/`;
 
 function App() {
   const [users, setUsers] = useState([]);
+  const darkMode = useDarkMode(true);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -34,6 +37,14 @@ function App() {
 
   return (
     <>
+      {users.results && (
+        <DarkModeToggle
+          checked={darkMode.value}
+          onChange={darkMode.toggle}
+          size={47}
+          className="theme-btn"
+        />
+      )}
       <ErrorToast />
       <Switch>
         <Route path="/" exact>

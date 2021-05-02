@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import Preloader from '../components/Preloader';
-import avatar from '../images/avatar_nick.png';
+
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import ErrorToast from '../components/ErrorToast';
 import { toast } from 'react-toastify';
 
+import Preloader from '../components/Preloader';
+import avatar from '../images/avatar_nick.png';
 class User {
   constructor(user) {
     this.user = user;
@@ -50,7 +50,7 @@ export default function UserDetails() {
       }
     };
     getUser();
-  }, [user, index]);
+  }, [index]);
 
   return (
     <>

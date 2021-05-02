@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 import Preloader from './Preloader';
 import avatar from '../images/avatar_nick.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function UserCard({ users }) {
   const [searchValue, setSearchValue] = React.useState('');
@@ -40,6 +39,10 @@ export default function UserCard({ users }) {
         })
       );
     }
+
+    return () => {
+      setFilteredUsers([]);
+    };
   }, [searchValue, users]);
 
   return (
