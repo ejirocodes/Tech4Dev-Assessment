@@ -1,24 +1,41 @@
-import logo from './logo.svg';
 import './App.css';
+import CharacterCard from './components/CharacterCard';
+import { useEffect, useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+const API_ENDPOINT = `https://swapi.dev/api/people/`;
 
 function App() {
+  const [characters, setSharacters] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const data = await fetch(API_ENDPOINT, {
+          method: 'GET',
+          //   headers: new Headers({
+
+          //   Accept: 'application/vnd.github.cloak-preview',
+          // }),
+        });
+
+        let transformedData = await data.json();
+
+        setSharacters(transformedData);
+        console.log({ characters });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUsers();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route path="/" exact>
+        <CharacterCard characters={characters} />
+      </Route>
+    </Switch>
   );
 }
 
