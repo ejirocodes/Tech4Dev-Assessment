@@ -121,3 +121,7 @@ body {
   color: white;
   font-family: courier, sans;
 }
+.back {
+  cursor: pointer;
+  user-select: none;
+}

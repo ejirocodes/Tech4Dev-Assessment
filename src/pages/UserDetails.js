@@ -17,7 +17,7 @@ class User {
   }
 }
 
-export default function CharacterDetails() {
+export default function UserDetails() {
   const [user, setCharacter] = useState({});
   const history = useHistory();
 
@@ -29,15 +29,16 @@ export default function CharacterDetails() {
   useEffect(() => {
     const getUser = async () => {
       try {
+        // Get single user details based on the index passed from route param
         const data = await fetch(`https://swapi.dev/api/people/${index}/`, {
           method: 'GET',
           headers: new Headers({
-            // Accept: 'application/vnd.github.cloak-preview',
             'Content-Type': 'application/x-www-form-urlencoded',
           }),
         });
         let transformedData = await data.json();
         setCharacter(transformedData);
+        console.log(!userClass.getUser().name);
       } catch (error) {
         console.log(error);
       }
@@ -45,21 +46,22 @@ export default function CharacterDetails() {
     getUser();
   }, []);
 
-  return <>{userClass.getUser().name && <Preloader />}</>;
+  return (
+    <>
+      {!userClass.getUser().name && <Preloader />}
+      {user && (
+        <div>
+          <div className="back" onClick={() => history.goBack()}>
+            Back
+          </div>
+          <h1> {userClass.getUser().name}</h1>
+          {/* Hide gender if it's not available */}
+          {userClass.getUser().gender !== 'n/a' && (
+            <p>{userClass.getUser().gender}</p>
+          )}
+          <p>{userClass.getUser().height}</p>
+        </div>
+      )}
+    </>
+  );
 }
-
-//  {
-//    user && (
-//      <div>
-//        <div className="back" onClick={() => history.goBack()}>
-//          Back
-//        </div>
-//        <h1> {userClass.getUser().name}</h1>
-//        {/* Hide gender if it's not available */}
-//        {userClass.getUser().gender !== 'n/a' && (
-//          <p>{userClass.getUser().gender}</p>
-//        )}
-//        <p>{userClass.getUser().height}</p>
-//      </div>
-//    );
-//  }
