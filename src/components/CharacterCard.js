@@ -1,24 +1,31 @@
 import React from 'react';
 
 export default function CharacterCard({ characters }) {
-  const handleCharacer = (name) => {
-    console.log(name);
+  const convertNameToSlug = (text) => {
+    return text
+      .toLowerCase()
+      .replace(/[^\w ]+/g, '')
+      .replace(/ +/g, '-');
+  };
+
+  const handleCharacter = (name) => {
+    const slug = convertNameToSlug(name);
+    console.log(slug);
   };
 
   return (
     <>
-      {' '}
       {characters.length !== 0 && (
         <section className="character_grid">
           {characters.results.map((character, i) => (
-            <figure onClick={() => handleCharacer(character.name)} key={i}>
+            <figure onClick={() => handleCharacter(character.name)} key={i}>
               <img
-                className="avatar mb"
+                className="character-img"
                 src="http://isgpp.com.ng/wp-content/uploads/bfi_thumb/isgpp_avatar_placeholder-nn13xxddqb4k2et3buosj68bh92wogalq28zpaeioo.png"
                 alt={character.name}
                 title={character.name}
               />
-              <figcaption className="user-name mb">{character.name}</figcaption>
+              <figcaption className="username">{character.name}</figcaption>
             </figure>
           ))}
 

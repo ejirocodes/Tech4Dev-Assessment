@@ -2,6 +2,7 @@ import './App.css';
 import CharacterCard from './components/CharacterCard';
 import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import CharacterDetails from './pages/CharacterDetails';
 
 const API_ENDPOINT = `https://swapi.dev/api/people/`;
 
@@ -34,6 +35,9 @@ function App() {
     <Switch>
       <Route path="/" exact>
         <CharacterCard characters={characters} />
+      </Route>
+      <Route path="/characters/:slug">
+        <CharacterDetails />
       </Route>
     </Switch>
   );
