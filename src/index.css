@@ -1,4 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap');
+:root {
+  --color-pri: #00838d;
+  --color-sec: #f2f8f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+*::selection {
+  color: var(--color-pri);
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
   font-family: 'Nunito', sans-serif;
@@ -10,7 +37,12 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: 1rem;
-  background: #d0d6e6;
+  background: #ffff;
+  padding: 1.4rem;
+  justify-content: space-evenly;
+  justify-items: center;
+  align-content: space-evenly;
+  align-items: center;
 }
 .character_grid figure {
   text-align: center;
@@ -18,8 +50,8 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   display: block;
   position: relative;
-  max-width: 262px;
-  background-color: #f2f8f9;
+  width: 83%;
+  background-color: var(--color-sec);
   border-radius: 4px;
   padding: 32px 24px;
   margin: 12px;
@@ -30,7 +62,7 @@ body {
 }
 
 .character_grid figure:hover {
-  border: 1px solid #00838d;
+  border: 1px solid var(--color-pri);
 }
 
 .character_grid figure:before {
@@ -39,7 +71,7 @@ body {
   z-index: -1;
   top: -16px;
   right: -16px;
-  background: #00838d;
+  background: var(--color-pri);
   height: 32px;
   width: 32px;
   border-radius: 32px;
@@ -66,7 +98,7 @@ body {
 .username {
   font-weight: 800;
   font-size: 1.4rem;
-  color: #00838d;
+  color: var(--color-pri);
 }
 
 .go-corner {
@@ -79,7 +111,7 @@ body {
   overflow: hidden;
   top: 0;
   right: 0;
-  background-color: #00838d;
+  background-color: var(--color-pri);
   border-radius: 0 4px 0 32px;
 }
 
