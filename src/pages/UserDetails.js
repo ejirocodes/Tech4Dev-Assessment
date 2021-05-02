@@ -4,6 +4,8 @@ import Preloader from '../components/Preloader';
 import avatar from '../images/avatar_nick.png';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import ErrorToast from '../components/ErrorToast';
+import { toast } from 'react-toastify';
 
 class User {
   constructor(user) {
@@ -42,7 +44,9 @@ export default function UserDetails() {
         let transformedData = await data.json();
         setUser(transformedData);
       } catch (error) {
-        console.log(error);
+        toast.error(`An error occured! ${error}, please reload the page`, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     };
     getUser();
@@ -50,6 +54,7 @@ export default function UserDetails() {
 
   return (
     <>
+      <ErrorToast />
       {!userClass.getUser().name && <Preloader />}
       {userClass.getUser().name && (
         <section style={{ padding: '2rem' }}>

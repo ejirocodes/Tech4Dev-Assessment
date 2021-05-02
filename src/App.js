@@ -2,7 +2,11 @@ import './App.css';
 import UserCard from './components/UserCard';
 import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
+
 import UserDetails from './pages/UserDetails';
+import ErrorToast from './components/ErrorToast';
 
 const API_ENDPOINT = `https://swapi.dev/api/people/`;
 
@@ -20,21 +24,26 @@ function App() {
 
         setUsers(transformedData);
       } catch (error) {
-        console.log(error);
+        toast.error(`An error occured! ${error}, please reload the page`, {
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
     };
     getUsers();
   }, []);
 
   return (
-    <Switch>
-      <Route path="/" exact>
-        <UserCard users={users} />
-      </Route>
-      <Route path="/users/:index">
-        <UserDetails />
-      </Route>
-    </Switch>
+    <>
+      <ErrorToast />
+      <Switch>
+        <Route path="/" exact>
+          <UserCard users={users} />
+        </Route>
+        <Route path="/users/:index">
+          <UserDetails />
+        </Route>
+      </Switch>
+    </>
   );
 }
 
