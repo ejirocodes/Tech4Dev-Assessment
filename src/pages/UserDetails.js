@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Preloader from '../components/Preloader';
 import avatar from '../images/avatar_nick.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 class User {
   constructor(user) {
@@ -56,11 +58,14 @@ export default function UserDetails() {
           </span>
           <div className="character_grid character_grid2">
             <figure title={userClass.getUser().name}>
-              <img
+              <LazyLoadImage
                 className="character-img"
                 src={avatar}
                 alt={userClass.getUser().name}
                 title={userClass.getUser().name}
+                height={user.height}
+                width={user.height}
+                effect="blur"
               />
               <figcaption className="username">
                 {' '}

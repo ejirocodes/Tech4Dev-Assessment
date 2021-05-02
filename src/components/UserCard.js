@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import Preloader from './Preloader';
 import avatar from '../images/avatar_nick.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 export default function UserCard({ users }) {
   const [searchValue, setSearchValue] = React.useState('');
@@ -57,11 +59,13 @@ export default function UserCard({ users }) {
           <section className="character_grid">
             {filteredUsers.map((user, i) => (
               <figure onClick={() => handleUsers(i)} key={i} title={user.name}>
-                <img
+                <LazyLoadImage
                   className="character-img"
                   src={avatar}
                   alt={user.name}
-                  title={user.name}
+                  height={user.height}
+                  width={user.height}
+                  effect="blur"
                 />
                 <figcaption className="username">{user.name}</figcaption>
                 <div className="go-corner" href="#">
