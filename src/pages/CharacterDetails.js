@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 export default function CharacterDetails() {
   const [character, setCharacter] = useState({});
+  const history = useHistory();
+
   const { index } = useParams();
 
   useEffect(() => {
@@ -31,6 +33,9 @@ export default function CharacterDetails() {
     <>
       {character && (
         <div>
+          <div class="back" onClick={() => history.goBack()}>
+            Back
+          </div>
           <h1> {character.name}</h1>
           {/* Hide gender if it's not available */}
           {character.gender !== 'n/a' && <p>{character.gender}</p>}
