@@ -7,7 +7,7 @@ import CharacterDetails from './pages/CharacterDetails';
 const API_ENDPOINT = `https://swapi.dev/api/people/`;
 
 function App() {
-  const [characters, setSharacters] = useState([]);
+  const [characters, setCharacters] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -22,7 +22,7 @@ function App() {
 
         let transformedData = await data.json();
 
-        setSharacters(transformedData);
+        setCharacters(transformedData);
         console.log({ characters });
       } catch (error) {
         console.log(error);
@@ -36,7 +36,7 @@ function App() {
       <Route path="/" exact>
         <CharacterCard characters={characters} />
       </Route>
-      <Route path="/characters/:slug">
+      <Route path="/characters/:index">
         <CharacterDetails />
       </Route>
     </Switch>
