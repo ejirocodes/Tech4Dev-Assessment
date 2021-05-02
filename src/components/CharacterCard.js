@@ -1,6 +1,10 @@
 import React from 'react';
+import { useHistory } from 'react-router';
+import Preloader from './Preloader';
 
 export default function CharacterCard({ characters }) {
+  let history = useHistory();
+
   const convertNameToSlug = (text) => {
     return text
       .toLowerCase()
@@ -10,11 +14,13 @@ export default function CharacterCard({ characters }) {
 
   const handleCharacter = (name) => {
     const slug = convertNameToSlug(name);
+    history.push(`/slug/${name}`);
     console.log(slug);
   };
 
   return (
     <>
+      {!characters.length && <Preloader />}
       {characters.length !== 0 && (
         <section className="character_grid">
           {characters.results.map((character, i) => (
@@ -28,38 +34,6 @@ export default function CharacterCard({ characters }) {
               <figcaption className="username">{character.name}</figcaption>
             </figure>
           ))}
-
-          {/* <div
-      v-for="leader in leaders"
-      :key="leader.user.id"
-      class="user-card"
-      @click="handleUser(leader.user.id)"
-    >
-      <img
-        class="avatar mb"
-        :src="leader.user.photo"
-        :alt="leader.user.display_name"
-        :title="leader.user.display_name"
-      />
-      <h1 class="user-name mb">{{ leader.user.display_name }}</h1>
-      <p class="rank mb">Rank: {{ leader.rank }}</p>
-      <p class="rank mb">
-        Total Hours Coded: {{ leader.running_total.human_readable_total }}
-      </p>
-      <p class="rank mb">
-        Daily Average: {{ leader.running_total.human_readable_total }}
-      </p>
-      <p class="lang-wrapper">
-        Languages Used: <br />
-        <span
-          v-for="language in leader.running_total.languages"
-          :key="language.name"
-          class="lang mb"
-        >
-          {{ language.name }}
-        </span>
-      </p>
-    </div> */}
         </section>
       )}
     </>
