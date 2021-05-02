@@ -7,7 +7,7 @@ export default function Preloader() {
       <div className="preloader-battery">
         <div className="cssload-liquid"></div>
       </div>
-      <p>Loading...</p>
+      <p style={{ marginTop: '1rem' }}>Loading...</p>
     </section>
   );
 }

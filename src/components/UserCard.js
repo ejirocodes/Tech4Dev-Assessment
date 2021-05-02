@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import Preloader from './Preloader';
+import avatar from '../images/avatar_nick.png';
 
 export default function UserCard({ users }) {
   const [searchValue, setSearchValue] = React.useState('');
@@ -16,9 +17,12 @@ export default function UserCard({ users }) {
   //     .replace(/ +/g, '-');
   // };
 
+  /**
+   * Navigate to details page using the index as route param
+   * @param {String} index - Index of user array passed to route param.
+   */
+
   const handleUsers = (index) => {
-    // const slug = convertameToSlug(name);
-    // navigate to details page using the index as route param
     history.push(`users/${index + 1}`);
   };
 
@@ -55,7 +59,7 @@ export default function UserCard({ users }) {
               <figure onClick={() => handleUsers(i)} key={i} title={user.name}>
                 <img
                   className="character-img"
-                  src="http://cliparts101.com/files/367/63BA654AECB7FD26A32D08915C923030/avatar_nick.png"
+                  src={avatar}
                   alt={user.name}
                   title={user.name}
                 />

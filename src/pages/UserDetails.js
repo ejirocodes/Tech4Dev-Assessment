@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Preloader from '../components/Preloader';
+import avatar from '../images/avatar_nick.png';
 
 class User {
   constructor(user) {
@@ -57,7 +58,7 @@ export default function UserDetails() {
             <figure title={userClass.getUser().name}>
               <img
                 className="character-img"
-                src="http://cliparts101.com/files/367/63BA654AECB7FD26A32D08915C923030/avatar_nick.png"
+                src={avatar}
                 alt={userClass.getUser().name}
                 title={userClass.getUser().name}
               />
