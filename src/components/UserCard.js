@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import Preloader from './Preloader';
 
 export default function UserCard({ users }) {
+  const [searchValue, setSearchValue] = React.useState('');
+  const [filteredUsers, setFilteredUsers] = React.useState([]);
+
   let history = useHistory();
 
   // Leaving this here for my future self
@@ -19,26 +22,53 @@ export default function UserCard({ users }) {
     history.push(`users/${index + 1}`);
   };
 
+  const handleSearchInputChanges = (e) => {
+    setSearchValue(e.target.value);
+  };
+  useEffect(() => {
+    if (users.length !== 0) {
+      console.log({ users });
+
+      setFilteredUsers(
+        users.results.filter((user) => {
+          // console.log(user);
+          return user.name.toLowerCase().includes(searchValue.toLowerCase());
+        })
+      );
+    }
+  }, [searchValue, users]);
+
   return (
     <>
       {users.length === 0 && <Preloader />}
       {users.length !== 0 && (
-        <section className="character_grid">
-          {users.results.map((user, i) => (
-            <figure onClick={() => handleUsers(i)} key={i} title={user.name}>
-              <img
-                className="character-img"
-                src="http://cliparts101.com/files/367/63BA654AECB7FD26A32D08915C923030/avatar_nick.png"
-                alt={user.name}
-                title={user.name}
-              />
-              <figcaption className="username">{user.name}</figcaption>
-              <div className="go-corner" href="#">
-                <div className="go-arrow">→</div>
-              </div>
-            </figure>
-          ))}
-        </section>
+        <>
+          {console.log(filteredUsers)}
+          <input
+            value={searchValue}
+            onChange={handleSearchInputChanges}
+            type="text"
+            className="searchTerm"
+            placeholder="Search for users..."
+          />
+          {searchValue}
+          <section className="character_grid">
+            {filteredUsers.map((user, i) => (
+              <figure onClick={() => handleUsers(i)} key={i} title={user.name}>
+                <img
+                  className="character-img"
+                  src="http://cliparts101.com/files/367/63BA654AECB7FD26A32D08915C923030/avatar_nick.png"
+                  alt={user.name}
+                  title={user.name}
+                />
+                <figcaption className="username">{user.name}</figcaption>
+                <div className="go-corner" href="#">
+                  <div className="go-arrow">→</div>
+                </div>
+              </figure>
+            ))}
+          </section>
+        </>
       )}
     </>
   );
