@@ -54,8 +54,8 @@ export default function UserDetails() {
 
   return (
     <>
-      <ErrorToast />
       {!userClass.getUser().name && <Preloader />}
+      <ErrorToast />
       {userClass.getUser().name && (
         <section style={{ padding: '2rem' }}>
           <span className="back" onClick={() => history.goBack()}>
